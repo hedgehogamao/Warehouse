@@ -1,0 +1,23 @@
+/**
+ * 全局样式
+ */
+
+page {
+  background-color: #f0f2f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.container {
+  padding: 20rpx;
+}
+
+/* 通用卡片样式 */
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}

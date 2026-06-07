@@ -1,0 +1,6 @@
+<!--pages/products/products.wxml-->
+<view class="container">
+  <view class="card">
+    <text>商品列表 — 待开发</text>
+  </view>
+</view>

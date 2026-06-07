@@ -1,0 +1,6 @@
+<!--pages/orders/orders.wxml-->
+<view class="container">
+  <view class="card">
+    <text>购买记录 — 待开发</text>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="welcome card">
+    <text class="title">汽车配件商城</text>
+    <text class="subtitle">优质配件，品质保障</text>
+  </view>
+
+  <view class="card">
+    <text class="section-title">热门分类</text>
+    <view class="categories">
+      <view class="category-item">机油</view>
+      <view class="category-item">滤芯</view>
+      <view class="category-item">刹车片</view>
+      <view class="category-item">轮胎</view>
+      <view class="category-item">其他</view>
+    </view>
+  </view>
+</view>

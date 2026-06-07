@@ -1,0 +1,1 @@
+import{_ as s}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{o as t,c as e,a}from"./index-Dc_0J-SR.js";const r={class:"dashboard"},c={__name:"Dashboard",setup(_){return(p,o)=>(t(),e("div",r,[...o[0]||(o[0]=[a("h2",null,"欢迎使用汽车配件门店管理系统",-1),a("p",{style:{color:"#999","margin-top":"12px"}},"系统正在建设中...",-1)])]))}},l=s(c,[["__scopeId","data-v-6c723d1b"]]);export{l as default};
