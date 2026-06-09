@@ -119,20 +119,9 @@ onMounted(() => loadOrders(true))
   font-size: 14px;
 }
 
-.item-name {
-  flex: 1;
-}
-
-.item-qty {
-  color: #a09d96;
-  margin: 0 12px;
-}
-
-.item-subtotal {
-  font-weight: 500;
-  min-width: 80px;
-  text-align: right;
-}
+.item-name { flex: 1; }
+.item-qty { color: #a09d96; margin: 0 12px; }
+.item-subtotal { font-weight: 500; min-width: 80px; text-align: right; }
 
 .order-footer {
   display: flex;
@@ -142,19 +131,7 @@ onMounted(() => loadOrders(true))
   padding-top: 8px;
 }
 
-.order-date {
-  font-size: 12px;
-  color: #a09d96;
-}
-
-.order-total {
-  font-size: 16px;
-  font-weight: 600;
-  color: #cc785c;
-}
-
-.load-more {
-  text-align: center;
-  padding: 20px;
-}
+.order-date { font-size: 12px; color: #a09d96; }
+.order-total { font-size: 16px; font-weight: 600; color: #cc785c; }
+.load-more { text-align: center; padding: 20px; }
 </style>

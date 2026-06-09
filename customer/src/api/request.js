@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import router from '@/router'
 import i18n from '@/i18n'
 
 const t = i18n.global.t
@@ -14,18 +13,6 @@ const request = axios.create({
   }
 })
 
-// 请求拦截器：自动携带 Token
-request.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('customer_token')
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
-    }
-    return config
-  },
-  (error) => Promise.reject(error)
-)
-
 // 响应拦截器：统一处理错误
 request.interceptors.response.use(
   (response) => {
@@ -38,15 +25,7 @@ request.interceptors.response.use(
   },
   (error) => {
     if (error.response) {
-      const { status } = error.response
-      if (status === 401) {
-        localStorage.removeItem('customer_token')
-        localStorage.removeItem('customer_info')
-        router.push('/login')
-        ElMessage.error(t('login.expired'))
-      } else {
-        ElMessage.error(error.response.data?.message || t('message.serverError'))
-      }
+      ElMessage.error(error.response.data?.message || t('message.serverError'))
     } else {
       ElMessage.error(t('message.networkError'))
     }
