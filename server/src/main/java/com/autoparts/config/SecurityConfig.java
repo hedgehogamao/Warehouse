@@ -48,6 +48,8 @@ public class SecurityConfig {
     private static final String[] WHITE_LIST = {
             "/api/v1/auth/login",
             "/api/v1/health",
+            "/api/v1/customer/auth/register",
+            "/api/v1/customer/auth/login",
             "/api/v1/miniapp/auth/login",
             "/api/v1/miniapp/products",
             "/api/v1/miniapp/products/**",

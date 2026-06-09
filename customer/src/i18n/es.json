@@ -1,0 +1,105 @@
+{
+  "app": {
+    "name": "Auto Parts Mall",
+    "slogan": "The best parts for your vehicle"
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "orders": "Orders",
+    "profile": "Profile"
+  },
+  "login": {
+    "title": "Login",
+    "phone": "Phone",
+    "password": "Password",
+    "submit": "Login",
+    "noAccount": "Don't have an account?",
+    "register": "Register",
+    "expired": "Session expired, please login again",
+    "success": "Login successful"
+  },
+  "register": {
+    "title": "Register",
+    "phone": "Phone",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Name (optional)",
+    "submit": "Register",
+    "hasAccount": "Already have an account?",
+    "login": "Login",
+    "success": "Registration successful",
+    "passwordMismatch": "Passwords do not match"
+  },
+  "home": {
+    "searchPlaceholder": "Search parts...",
+    "hotProducts": "Hot Products",
+    "viewAll": "View All",
+    "addToCart": "Add to Cart"
+  },
+  "products": {
+    "searchPlaceholder": "Search by name, brand...",
+    "allCategories": "All",
+    "noProducts": "No products available",
+    "addToCart": "Add to Cart"
+  },
+  "product": {
+    "stock": "Stock",
+    "brand": "Brand",
+    "sku": "SKU",
+    "category": "Category",
+    "carModel": "Compatible Models",
+    "description": "Description",
+    "addToCart": "Add to Cart",
+    "goToCart": "Go to Cart",
+    "outOfStock": "Out of Stock"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "goShopping": "Go Shopping",
+    "total": "Total",
+    "clear": "Clear Cart",
+    "tip1": "Please bring this list to the store for checkout",
+    "tip2": "The clerk will create your order and collect payment",
+    "contactStore": "Contact Store",
+    "delete": "Delete"
+  },
+  "orders": {
+    "title": "Purchase History",
+    "empty": "No orders yet",
+    "orderNo": "Order #",
+    "total": "Total",
+    "status": {
+      "PAID": "Paid",
+      "REFUNDED": "Refunded"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "phone": "Phone",
+    "save": "Save",
+    "logout": "Logout",
+    "language": "Language",
+    "saveSuccess": "Saved successfully"
+  },
+  "stock": {
+    "inStock": "In Stock",
+    "lowStock": "Low Stock",
+    "outOfStock": "Out of Stock"
+  },
+  "message": {
+    "requestFailed": "Request failed",
+    "serverError": "Server error",
+    "networkError": "Network error",
+    "addedToCart": "Added to cart"
+  },
+  "common": {
+    "loading": "Loading...",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "yuan": "CNY"
+  }
+}

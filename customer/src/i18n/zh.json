@@ -1,0 +1,105 @@
+{
+  "app": {
+    "name": "汽车配件商城",
+    "slogan": "为您的爱车提供最优质的配件"
+  },
+  "nav": {
+    "home": "首页",
+    "products": "商品",
+    "cart": "购物车",
+    "orders": "购买记录",
+    "profile": "个人中心"
+  },
+  "login": {
+    "title": "登录",
+    "phone": "手机号",
+    "password": "密码",
+    "submit": "登录",
+    "noAccount": "还没有账号？",
+    "register": "立即注册",
+    "expired": "登录已过期，请重新登录",
+    "success": "登录成功"
+  },
+  "register": {
+    "title": "注册",
+    "phone": "手机号",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "name": "姓名（选填）",
+    "submit": "注册",
+    "hasAccount": "已有账号？",
+    "login": "去登录",
+    "success": "注册成功",
+    "passwordMismatch": "两次输入的密码不一致"
+  },
+  "home": {
+    "searchPlaceholder": "搜索配件...",
+    "hotProducts": "热门商品",
+    "viewAll": "查看全部",
+    "addToCart": "加入购物车"
+  },
+  "products": {
+    "searchPlaceholder": "搜索商品名称、品牌...",
+    "allCategories": "全部",
+    "noProducts": "暂无商品",
+    "addToCart": "加入购物车"
+  },
+  "product": {
+    "stock": "库存",
+    "brand": "品牌",
+    "sku": "商品编码",
+    "category": "分类",
+    "carModel": "适配车型",
+    "description": "商品描述",
+    "addToCart": "加入购物车",
+    "goToCart": "去购物车",
+    "outOfStock": "已售罄"
+  },
+  "cart": {
+    "title": "购物车",
+    "empty": "购物车是空的",
+    "goShopping": "去逛逛",
+    "total": "合计",
+    "clear": "清空购物车",
+    "tip1": "请将此清单带到门店结算",
+    "tip2": "店员将为您创建订单并收款",
+    "contactStore": "联系门店",
+    "delete": "删除"
+  },
+  "orders": {
+    "title": "购买记录",
+    "empty": "暂无购买记录",
+    "orderNo": "订单号",
+    "total": "总计",
+    "status": {
+      "PAID": "已付款",
+      "REFUNDED": "已退款"
+    }
+  },
+  "profile": {
+    "title": "个人中心",
+    "name": "姓名",
+    "phone": "手机号",
+    "save": "保存",
+    "logout": "退出登录",
+    "language": "语言",
+    "saveSuccess": "保存成功"
+  },
+  "stock": {
+    "inStock": "有货",
+    "lowStock": "库存紧张",
+    "outOfStock": "缺货"
+  },
+  "message": {
+    "requestFailed": "请求失败",
+    "serverError": "服务器错误",
+    "networkError": "网络连接失败",
+    "addedToCart": "已加入购物车"
+  },
+  "common": {
+    "loading": "加载中...",
+    "confirm": "确认",
+    "cancel": "取消",
+    "yuan": "元"
+  }
+}
