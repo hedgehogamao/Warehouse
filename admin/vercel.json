@@ -10,7 +10,10 @@
     {
       "source": "/uploads/:path*",
       "destination": "https://warehouse-production-d396.up.railway.app/uploads/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
-
