@@ -23,25 +23,25 @@ const routes = [
         path: 'home',
         name: 'Home',
         component: () => import('@/views/Home.vue'),
-        meta: { title: '首页' }
+        meta: { title: '首页', requiresAuth: false }
       },
       {
         path: 'products',
         name: 'Products',
         component: () => import('@/views/Products.vue'),
-        meta: { title: '商品' }
+        meta: { title: '商品', requiresAuth: false }
       },
       {
         path: 'products/:id',
         name: 'ProductDetail',
         component: () => import('@/views/ProductDetail.vue'),
-        meta: { title: '商品详情' }
+        meta: { title: '商品详情', requiresAuth: false }
       },
       {
         path: 'cart',
         name: 'Cart',
         component: () => import('@/views/Cart.vue'),
-        meta: { title: '购物车' }
+        meta: { title: '购物车', requiresAuth: false }
       },
       {
         path: 'orders',
