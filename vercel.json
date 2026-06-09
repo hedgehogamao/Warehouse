@@ -5,11 +5,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://你的Railway后端地址.up.railway.app/api/:path*"
+      "destination": "https://warehouse-production-d396.up.railway.app"
     },
     {
       "source": "/uploads/:path*",
-      "destination": "https://你的Railway后端地址.up.railway.app/uploads/:path*"
+      "destination": "https://warehouse-production-d396.up.railway.app"
     }
   ]
 }
