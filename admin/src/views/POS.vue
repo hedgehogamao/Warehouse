@@ -21,7 +21,7 @@
                 <div class="product-name">{{ p.name }}</div>
                 <div class="product-meta">{{ p.sku }} · {{ t('pos.stock') }}: {{ p.stock }}</div>
               </div>
-              <div class="product-price">¥{{ p.salePrice }}</div>
+              <div class="product-price">C${{ p.salePrice }}</div>
             </div>
           </div>
         </el-card>
@@ -42,18 +42,18 @@
             <div v-for="(item, index) in cart" :key="item.productId" class="cart-item">
               <div class="cart-item-info">
                 <div class="cart-item-name">{{ item.name }}</div>
-                <div class="cart-item-price">¥{{ item.unitPrice }}</div>
+                <div class="cart-item-price">C${{ item.unitPrice }}</div>
               </div>
               <div class="cart-item-actions">
                 <el-input-number v-model="item.quantity" :min="1" :max="item.stock" size="small" @change="updateSubtotal(item)" />
-                <span class="cart-item-subtotal">¥{{ item.subtotal.toFixed(2) }}</span>
+                <span class="cart-item-subtotal">C${{ item.subtotal.toFixed(2) }}</span>
                 <el-button link type="danger" size="small" @click="removeFromCart(index)"><el-icon><Delete /></el-icon></el-button>
               </div>
             </div>
           </div>
           <div v-if="cart.length > 0" class="cart-total">
             <span>{{ t('common.total') }}</span>
-            <span class="total-amount">¥{{ totalAmount.toFixed(2) }}</span>
+            <span class="total-amount">C${{ totalAmount.toFixed(2) }}</span>
           </div>
           <div v-if="cart.length > 0" class="customer-info">
             <el-input v-model="customerName" :placeholder="t('pos.customerName')" size="small" />
@@ -69,7 +69,7 @@
           </div>
           <div v-if="cart.length > 0" class="cart-actions">
             <el-button type="primary" size="large" style="width: 100%" :loading="submitting" @click="handleCheckout">
-              {{ t('pos.confirmPay') }} ¥{{ totalAmount.toFixed(2) }}
+              {{ t('pos.confirmPay') }} C${{ totalAmount.toFixed(2) }}
             </el-button>
           </div>
         </el-card>

@@ -16,7 +16,7 @@
           <div class="item-info">
             <h3 class="item-name" @click="router.push(`/products/${item.id}`)">{{ item.name }}</h3>
             <p class="item-sku">{{ item.sku }}</p>
-            <p class="item-price">¥{{ item.salePrice }}</p>
+            <p class="item-price">C${{ item.salePrice }}</p>
           </div>
           <div class="item-actions">
             <div class="quantity-control">
@@ -28,7 +28,7 @@
                 <el-icon><Plus /></el-icon>
               </el-button>
             </div>
-            <p class="item-subtotal">¥{{ (item.salePrice * item.quantity).toFixed(2) }}</p>
+            <p class="item-subtotal">C${{ (item.salePrice * item.quantity).toFixed(2) }}</p>
             <el-button type="danger" text size="small" @click="cartStore.removeItem(index)">
               {{ t('cart.delete') }}
             </el-button>
@@ -44,7 +44,7 @@
         <div class="footer-right">
           <div class="total">
             <span class="total-label">{{ t('cart.total') }}</span>
-            <span class="total-amount">¥{{ cartStore.totalAmount.toFixed(2) }}</span>
+            <span class="total-amount">C${{ cartStore.totalAmount.toFixed(2) }}</span>
           </div>
         </div>
       </div>

@@ -188,7 +188,7 @@
     "paymentCard": "Tarjeta",
     "confirmPay": "Confirmar Pago",
     "maxStock": "Stock máximo alcanzado",
-    "orderSuccess": "¡Pedido exitoso! N.º: {orderNo}, Total: ¥{amount}"
+    "orderSuccess": "¡Pedido exitoso! N.º: {orderNo}, Total: C${amount}"
   },
   "order": {
     "orderNo": "N.º de Pedido",

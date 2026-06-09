@@ -13,7 +13,7 @@
           {{ getStockText(product.stockStatus) }} ({{ product.stock }})
         </el-tag>
         <div class="price-row">
-          <span class="price">¥{{ product.salePrice }}</span>
+          <span class="price">C${{ product.salePrice }}</span>
         </div>
         <div class="info-grid">
           <div class="info-item"><span class="label">{{ t('product.brand') }}</span><span>{{ product.brand || '-' }}</span></div>

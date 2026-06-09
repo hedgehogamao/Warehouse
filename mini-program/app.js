@@ -4,8 +4,8 @@
  */
 App({
   globalData: {
-    baseUrl: 'http://localhost:8080/api/v1',
-    serverOrigin: 'http://localhost:8080',
+    baseUrl: 'https://warehouse-production-d396.up.railway.app/api/v1',
+    serverOrigin: 'https://warehouse-production-d396.up.railway.app',
     cart: wx.getStorageSync('cart') || []
   },
 

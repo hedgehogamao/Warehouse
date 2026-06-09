@@ -16,12 +16,12 @@
           <div v-for="item in order.items" :key="item.productName" class="order-item">
             <span class="item-name">{{ item.productName }}</span>
             <span class="item-qty">×{{ item.quantity }}</span>
-            <span class="item-subtotal">¥{{ item.subtotal }}</span>
+            <span class="item-subtotal">C${{ item.subtotal }}</span>
           </div>
         </div>
         <div class="order-footer">
           <span class="order-date">{{ order.createdAt }}</span>
-          <span class="order-total">{{ t('orders.total') }} ¥{{ order.totalAmount }}</span>
+          <span class="order-total">{{ t('orders.total') }} C${{ order.totalAmount }}</span>
         </div>
       </div>
     </div>

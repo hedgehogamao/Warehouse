@@ -180,7 +180,7 @@
     "paymentCard": "刷卡",
     "confirmPay": "确认收款",
     "maxStock": "已达最大库存",
-    "orderSuccess": "下单成功！订单号: {orderNo}，合计: ¥{amount}"
+    "orderSuccess": "下单成功！订单号: {orderNo}，合计: C${amount}"
   },
   "order": {
     "orderNo": "订单号",

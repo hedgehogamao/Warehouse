@@ -49,7 +49,7 @@
           <template #default="{ row }"><el-tag :type="getStockTagType(row)" size="small">{{ row.stock }}</el-tag></template>
         </el-table-column>
         <el-table-column :label="t('product.salePrice')" width="100">
-          <template #default="{ row }">¥{{ row.salePrice }}</template>
+          <template #default="{ row }">C${{ row.salePrice }}</template>
         </el-table-column>
         <el-table-column :label="t('common.status')" width="80">
           <template #default="{ row }"><el-switch :model-value="row.status === 1" @change="(val) => handleStatusChange(row, val)" /></template>

@@ -37,7 +37,7 @@
         <el-table-column prop="productSku" :label="t('stockIn.sku')" width="130" />
         <el-table-column prop="quantity" :label="t('common.quantity')" width="80" />
         <el-table-column :label="t('stockIn.costPrice')" width="100">
-          <template #default="{ row }">{{ row.costPrice != null ? `¥${row.costPrice}` : '-' }}</template>
+          <template #default="{ row }">{{ row.costPrice != null ? `C$${row.costPrice}` : '-' }}</template>
         </el-table-column>
         <el-table-column prop="operatorName" :label="t('common.operator')" width="90" />
         <el-table-column prop="remark" :label="t('common.remark')" min-width="140" show-overflow-tooltip />

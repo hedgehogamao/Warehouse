@@ -19,7 +19,7 @@
       <el-table :data="orderList" v-loading="loading" stripe>
         <el-table-column prop="orderNo" :label="t('order.orderNo')" width="170" />
         <el-table-column :label="t('order.customer')" width="100"><template #default="{ row }">{{ row.customerName || '-' }}</template></el-table-column>
-        <el-table-column :label="t('common.amount')" width="110"><template #default="{ row }"><span class="amount">¥{{ row.totalAmount }}</span></template></el-table-column>
+        <el-table-column :label="t('common.amount')" width="110"><template #default="{ row }"><span class="amount">C${{ row.totalAmount }}</span></template></el-table-column>
         <el-table-column :label="t('order.paymentMethod')" width="100"><template #default="{ row }"><el-tag size="small" :type="getPaymentTagType(row.paymentMethod)">{{ row.paymentMethodName }}</el-tag></template></el-table-column>
         <el-table-column :label="t('common.status')" width="90"><template #default="{ row }"><el-tag :type="row.status === 'PAID' ? 'success' : 'info'" size="small">{{ row.status === 'PAID' ? t('order.paid') : t('order.refunded') }}</el-tag></template></el-table-column>
         <el-table-column prop="itemCount" :label="t('order.itemCount')" width="80" />
@@ -51,10 +51,10 @@
         <el-table :data="detail.items" stripe size="small" border>
           <el-table-column prop="productName" :label="t('product.name')" />
           <el-table-column prop="quantity" :label="t('common.quantity')" width="80" />
-          <el-table-column :label="t('order.unitPrice')" width="100"><template #default="{ row }">¥{{ row.unitPrice }}</template></el-table-column>
-          <el-table-column :label="t('order.subtotal')" width="100"><template #default="{ row }">¥{{ row.subtotal }}</template></el-table-column>
+          <el-table-column :label="t('order.unitPrice')" width="100"><template #default="{ row }">C${{ row.unitPrice }}</template></el-table-column>
+          <el-table-column :label="t('order.subtotal')" width="100"><template #default="{ row }">C${{ row.subtotal }}</template></el-table-column>
         </el-table>
-        <div class="detail-total">{{ t('common.total') }}: <span class="total-amount">¥{{ detail.totalAmount }}</span></div>
+        <div class="detail-total">{{ t('common.total') }}: <span class="total-amount">C${{ detail.totalAmount }}</span></div>
       </div>
     </el-dialog>
   </div>

@@ -27,7 +27,7 @@
           <h3 class="product-name">{{ product.name }}</h3>
           <p class="product-meta">{{ product.brand }} · {{ product.category }}</p>
           <div class="product-bottom">
-            <span class="price">¥{{ product.salePrice }}</span>
+            <span class="price">C${{ product.salePrice }}</span>
             <el-button type="primary" size="small" circle @click.stop="addToCart(product)" :disabled="product.stockStatus === 'OUT'">
               <el-icon><Plus /></el-icon>
             </el-button>

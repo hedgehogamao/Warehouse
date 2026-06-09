@@ -25,7 +25,7 @@
             <el-table-column prop="productName" :label="t('product.name')" />
             <el-table-column prop="category" :label="t('product.category')" width="100" />
             <el-table-column :label="t('common.quantity')" width="100"><template #default="{ row }">{{ row.totalQuantity }}</template></el-table-column>
-            <el-table-column :label="t('common.amount')" width="120"><template #default="{ row }"><span class="amount">¥{{ row.totalAmount }}</span></template></el-table-column>
+            <el-table-column :label="t('common.amount')" width="120"><template #default="{ row }"><span class="amount">C${{ row.totalAmount }}</span></template></el-table-column>
           </el-table>
         </el-card>
       </el-col>
@@ -77,7 +77,7 @@ function renderTrend(data) {
     grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
     xAxis: { type: 'category', data: data.days, axisLine: { lineStyle: { color: '#e6dfd8' } }, axisLabel: { color: '#6c6a64' } },
     yAxis: [
-      { type: 'value', name: '¥', splitLine: { lineStyle: { color: '#ebe6df' } }, axisLabel: { color: '#6c6a64' } },
+      { type: 'value', name: 'C$', splitLine: { lineStyle: { color: '#ebe6df' } }, axisLabel: { color: '#6c6a64' } },
       { type: 'value', name: t('dashboard.orders'), splitLine: { show: false }, axisLabel: { color: '#6c6a64' } }
     ],
     series: [
@@ -93,7 +93,7 @@ function renderPie(data) {
   pieChart = echarts.init(pieChartRef.value)
   const colors = ['#cc785c', '#5db8a6', '#e8a55a', '#d4a017', '#6c6a64', '#8e8b82']
   pieChart.setOption({
-    tooltip: { trigger: 'item', formatter: '{b}: ¥{c} ({d}%)' },
+    tooltip: { trigger: 'item', formatter: '{b}: C${c} ({d}%)' },
     series: [{ type: 'pie', radius: ['40%', '70%'], avoidLabelOverlap: false, itemStyle: { borderRadius: 6, borderColor: '#faf9f5', borderWidth: 2 }, label: { show: true, formatter: '{b}\n{d}%', color: '#3d3d3a' }, data: data.map((d, i) => ({ value: d.amount, name: d.category, itemStyle: { color: colors[i % colors.length] } })) }]
   })
 }
