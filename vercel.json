@@ -1,0 +1,15 @@
+{
+  "buildCommand": "cd admin && npm run build",
+  "outputDirectory": "admin/dist",
+  "installCommand": "cd admin && npm install",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://你的Railway后端地址.up.railway.app/api/:path*"
+    },
+    {
+      "source": "/uploads/:path*",
+      "destination": "https://你的Railway后端地址.up.railway.app/uploads/:path*"
+    }
+  ]
+}
