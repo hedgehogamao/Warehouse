@@ -11,14 +11,14 @@ USE auto_parts_store;
 -- 用户名: admin  密码: admin123 (BCrypt加密)
 -- =============================================
 INSERT INTO users (username, password, role, real_name, phone, status) VALUES
-('admin', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iKTVKIUi', 'ADMIN', '系统管理员', '13800000000', 1);
+('admin', '$2a$10$Lc44jWDZT/aFL.IUhBl3qe8WyzgSWtLkV/9EO.eUIUDR/AKgcjvT6', 'ADMIN', '系统管理员', '13800000000', 1);
 
 -- =============================================
 -- 2. 示例员工账号（可选）
 -- 用户名: staff1  密码: staff123
 -- =============================================
 INSERT INTO users (username, password, role, real_name, phone, status) VALUES
-('staff1', '$2a$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36PsLJfGqKCQ3MnFpGSnFGu', 'STAFF', '张三', '13800000001', 1);
+('staff1', '$2a$10$ATCC76Z2La85UGbZgEisu.vVAF7xTRqr0gY6z58thTi4GrwuumdGG', 'STAFF', '张三', '13800000001', 1);
 
 -- =============================================
 -- 3. 示例商品数据（可选，用于测试）

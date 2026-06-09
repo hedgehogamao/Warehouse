@@ -1,0 +1,278 @@
+/* ============================================
+   Claude Design System — Design Tokens
+   汽车配件门店管理系统
+   ============================================ */
+
+/* Google Fonts: Inter (正文) + Cormorant Garamond (标题) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+/* ============================================
+   1. Claude 设计令牌（CSS 自定义属性）
+   ============================================ */
+:root {
+  /* 品牌色 */
+  --claude-primary: #cc785c;
+  --claude-primary-active: #a9583e;
+  --claude-primary-disabled: #e6dfd8;
+  --claude-accent-teal: #5db8a6;
+  --claude-accent-amber: #e8a55a;
+
+  /* 表面 */
+  --claude-canvas: #faf9f5;
+  --claude-surface-soft: #f5f0e8;
+  --claude-surface-card: #efe9de;
+  --claude-surface-cream-strong: #e8e0d2;
+  --claude-surface-dark: #181715;
+  --claude-surface-dark-elevated: #252320;
+  --claude-surface-dark-soft: #1f1e1b;
+
+  /* 文字 */
+  --claude-ink: #141413;
+  --claude-body-strong: #252523;
+  --claude-body: #3d3d3a;
+  --claude-muted: #6c6a64;
+  --claude-muted-soft: #8e8b82;
+  --claude-on-primary: #ffffff;
+  --claude-on-dark: #faf9f5;
+  --claude-on-dark-soft: #a09d96;
+
+  /* 边框 */
+  --claude-hairline: #e6dfd8;
+  --claude-hairline-soft: #ebe6df;
+
+  /* 语义 */
+  --claude-success: #5db872;
+  --claude-warning: #d4a017;
+  --claude-error: #c64545;
+
+  /* 字体 */
+  --claude-font-display: 'Cormorant Garamond', 'EB Garamond', Garamond, 'Times New Roman', serif;
+  --claude-font-body: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --claude-font-code: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  /* 圆角 */
+  --claude-radius-sm: 6px;
+  --claude-radius-md: 8px;
+  --claude-radius-lg: 12px;
+
+  /* 间距 */
+  --claude-space-xs: 8px;
+  --claude-space-sm: 12px;
+  --claude-space-md: 16px;
+  --claude-space-lg: 24px;
+  --claude-space-xl: 32px;
+}
+
+/* ============================================
+   2. Element Plus 主题覆盖
+   ============================================ */
+
+/* --- 主色调（珊瑚色）--- */
+:root {
+  --el-color-primary: #cc785c;
+  --el-color-primary-light-1: #d2846a;
+  --el-color-primary-light-2: #d89078;
+  --el-color-primary-light-3: #de9c86;
+  --el-color-primary-light-4: #e4a894;
+  --el-color-primary-light-5: #eab4a2;
+  --el-color-primary-light-6: #f0c0b0;
+  --el-color-primary-light-7: #f6ccbe;
+  --el-color-primary-light-8: #f8d8cc;
+  --el-color-primary-light-9: #fce4da;
+  --el-color-primary-dark-2: #a9583e;
+
+  /* 成功色（温暖绿） */
+  --el-color-success: #5db872;
+  --el-color-success-light-3: #89cc96;
+  --el-color-success-light-5: #a8d9b2;
+  --el-color-success-light-7: #c7e6ce;
+  --el-color-success-light-8: #d6ede9;
+  --el-color-success-light-9: #e5f4ea;
+  --el-color-success-dark-2: #4a935b;
+
+  /* 警告色（琥珀） */
+  --el-color-warning: #d4a017;
+  --el-color-warning-light-3: #e0b84c;
+  --el-color-warning-light-5: #e8cb7a;
+  --el-color-warning-light-7: #f0dda8;
+  --el-color-warning-light-9: #f8eed6;
+
+  /* 错误色 */
+  --el-color-error: #c64545;
+  --el-color-danger: #c64545;
+
+  /* --- 背景色 --- */
+  --el-bg-color: #faf9f5;
+  --el-bg-color-page: #faf9f5;
+  --el-bg-color-overlay: #efe9de;
+
+  /* --- 文字色 --- */
+  --el-text-color-primary: #141413;
+  --el-text-color-regular: #3d3d3a;
+  --el-text-color-secondary: #6c6a64;
+  --el-text-color-placeholder: #8e8b82;
+  --el-text-color-disabled: #b8b5ae;
+
+  /* --- 边框色 --- */
+  --el-border-color: #e6dfd8;
+  --el-border-color-light: #ebe6df;
+  --el-border-color-lighter: #f0ebe4;
+  --el-border-color-extra-light: #f5f0e8;
+  --el-border-color-dark: #d4cdc5;
+
+  /* --- 填充色 --- */
+  --el-fill-color: #f5f0e8;
+  --el-fill-color-light: #f8f5ef;
+  --el-fill-color-lighter: #faf8f3;
+  --el-fill-color-extra-light: #fcfbf8;
+  --el-fill-color-dark: #e8e0d2;
+  --el-fill-color-blank: #faf9f5;
+
+  /* --- 遮罩 --- */
+  --el-mask-color: rgba(20, 19, 19, 0.5);
+  --el-mask-color-extra-light: rgba(20, 19, 19, 0.1);
+
+  /* --- 阴影（极淡，几乎不用）--- */
+  --el-box-shadow: 0 1px 3px rgba(20, 20, 19, 0.06);
+  --el-box-shadow-light: 0 1px 2px rgba(20, 20, 19, 0.04);
+  --el-box-shadow-lighter: 0 1px 1px rgba(20, 20, 19, 0.02);
+
+  /* --- 圆角 --- */
+  --el-border-radius-base: 8px;
+  --el-border-radius-small: 6px;
+  --el-border-radius-round: 9999px;
+
+  /* --- 字体 --- */
+  --el-font-family: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', -apple-system, sans-serif;
+}
+
+/* ============================================
+   3. Element Plus 组件微调
+   ============================================ */
+
+/* 按钮 */
+.el-button--primary {
+  --el-button-bg-color: var(--claude-primary);
+  --el-button-border-color: var(--claude-primary);
+  --el-button-hover-bg-color: var(--claude-primary-active);
+  --el-button-hover-border-color: var(--claude-primary-active);
+  --el-button-active-bg-color: var(--claude-primary-active);
+  --el-button-active-border-color: var(--claude-primary-active);
+  --el-button-disabled-bg-color: var(--claude-primary-disabled);
+  --el-button-disabled-border-color: var(--claude-primary-disabled);
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+/* 输入框 */
+.el-input__wrapper {
+  background-color: var(--claude-canvas) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 0 1px var(--claude-hairline) inset !important;
+}
+.el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--claude-muted-soft) inset !important;
+}
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px var(--claude-primary) inset, 0 0 0 3px rgba(204, 120, 92, 0.12) inset !important;
+}
+
+/* 表格 */
+.el-table {
+  --el-table-border-color: var(--claude-hairline-soft);
+  --el-table-header-bg-color: var(--claude-surface-soft);
+  --el-table-header-text-color: var(--claude-body-strong);
+  --el-table-row-hover-bg-color: var(--claude-surface-soft);
+  --el-table-bg-color: var(--claude-canvas);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 14px;
+}
+.el-table th.el-table__cell {
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: none;
+}
+
+/* 卡片 */
+.el-card {
+  --el-card-bg-color: var(--claude-canvas);
+  --el-card-border-color: var(--claude-hairline);
+  border-radius: 12px;
+  border: 1px solid var(--claude-hairline);
+  box-shadow: none;
+}
+
+/* 对话框 */
+.el-dialog {
+  --el-dialog-bg-color: var(--claude-canvas);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(20, 19, 19, 0.12);
+}
+.el-dialog__header {
+  border-bottom: 1px solid var(--claude-hairline-soft);
+  padding: 16px 24px;
+}
+.el-dialog__title {
+  font-family: var(--claude-font-display);
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--claude-ink);
+}
+.el-dialog__body {
+  padding: 24px;
+}
+
+/* 分页 */
+.el-pagination {
+  --el-pagination-bg-color: transparent;
+  --el-pagination-hover-color: var(--claude-primary);
+}
+
+/* 标签 */
+.el-tag {
+  border-radius: 6px;
+}
+
+/* 下拉菜单 */
+.el-dropdown-menu {
+  border-radius: 8px;
+  border: 1px solid var(--claude-hairline);
+  box-shadow: 0 4px 12px rgba(20, 19, 19, 0.08);
+}
+
+/* 面包屑 */
+.el-breadcrumb__inner {
+  color: var(--claude-muted) !important;
+}
+.el-breadcrumb__inner.is-link:hover {
+  color: var(--claude-primary) !important;
+}
+
+/* 消息提示 */
+.el-message {
+  border-radius: 8px;
+}
+
+/* 表单标签 */
+.el-form-item__label {
+  color: var(--claude-body-strong);
+  font-weight: 500;
+}
+
+/* 开关 */
+.el-switch.is-checked .el-switch__core {
+  background-color: var(--claude-primary);
+  border-color: var(--claude-primary);
+}
+
+/* 日期选择器 */
+.el-date-editor .el-input__wrapper {
+  background-color: var(--claude-canvas) !important;
+}
+
+/* Select 下拉 */
+.el-select__wrapper {
+  background-color: var(--claude-canvas) !important;
+  border-radius: 8px !important;
+}

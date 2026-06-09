@@ -48,7 +48,12 @@ public class SecurityConfig {
     private static final String[] WHITE_LIST = {
             "/api/v1/auth/login",
             "/api/v1/health",
-            "/api/v1/miniapp/**"
+            "/api/v1/miniapp/auth/login",
+            "/api/v1/miniapp/products",
+            "/api/v1/miniapp/products/**",
+            "/api/v1/products/by-sku/**",
+            "/api/v1/products/import-template",
+            "/uploads/**"
     };
 
     @Bean
@@ -63,17 +68,25 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(WHITE_LIST).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        // 用户管理接口仅管理员可访问
+                        .requestMatchers("/api/v1/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 // 添加 JWT 过滤器
                 .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
-                // 未认证处理
+                // 未认证/未授权处理
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((request, response, authException) -> {
                             response.setContentType("application/json;charset=UTF-8");
                             response.setStatus(401);
                             response.getWriter().write(objectMapper.writeValueAsString(
                                     Result.error(401, "未登录或Token已过期")));
+                        })
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            response.setContentType("application/json;charset=UTF-8");
+                            response.setStatus(403);
+                            response.getWriter().write(objectMapper.writeValueAsString(
+                                    Result.error(403, "没有操作权限")));
                         })
                 );
 

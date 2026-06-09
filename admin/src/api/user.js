@@ -26,3 +26,10 @@ export function deleteUser(id) {
 export function changePassword(id, data) {
   return request.put(`/users/${id}/password`, data)
 }
+
+/**
+ * 启用/禁用用户
+ */
+export function updateUserStatus(id, status) {
+  return request.put(`/users/${id}/status`, { status })
+}

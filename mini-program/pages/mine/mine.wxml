@@ -1,6 +1,33 @@
-<!--pages/mine/mine.wxml-->
 <view class="container">
-  <view class="card">
-    <text>个人中心 — 待开发</text>
+  <view class="header">
+    <text class="header-title">{{t.storeName}}</text>
+    <text class="header-sub">{{t.storeSub}}</text>
+  </view>
+
+  <!-- 语言切换 -->
+  <view class="lang-section">
+    <view class="lang-title">{{t.language}}</view>
+    <view class="lang-options">
+      <view class="lang-btn {{locale === 'zh' ? 'active' : ''}}" data-locale="zh" bindtap="onSwitchLang">{{t.langZh}}</view>
+      <view class="lang-btn {{locale === 'es' ? 'active' : ''}}" data-locale="es" bindtap="onSwitchLang">{{t.langEs}}</view>
+    </view>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="form-section">
+    <view class="form-title">{{t.myInfo}}</view>
+    <view class="form-item">
+      <text class="form-label">{{t.name}}</text>
+      <input class="form-input" placeholder="{{t.namePlaceholder}}" value="{{name}}" bindinput="onNameInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">{{t.phone}}</text>
+      <input class="form-input" placeholder="{{t.phonePlaceholder}}" value="{{phone}}" bindinput="onPhoneInput" type="number" />
+    </view>
+    <view class="save-btn" bindtap="onSave">{{t.saved === '已保存' ? '保存' : 'Guardar'}}</view>
+  </view>
+
+  <view class="action-section">
+    <view class="action-item" bindtap="onCallStore">{{t.callStore}}</view>
   </view>
 </view>

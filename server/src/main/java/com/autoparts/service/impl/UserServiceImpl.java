@@ -104,7 +104,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setRealName(userDTO.getRealName());
         user.setPhone(userDTO.getPhone());
-        user.setRole(userDTO.getRole() != null ? userDTO.getRole() : "staff");
+        user.setRole(userDTO.getRole() != null ? userDTO.getRole() : "STAFF");
         user.setStatus(userDTO.getStatus() != null ? userDTO.getStatus() : 1);
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
@@ -179,6 +179,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new BusinessException(400, "原密码错误");
         }
         user.setPassword(passwordEncoder.encode(newPassword));
+        user.setUpdatedAt(LocalDateTime.now());
+        updateById(user);
+    }
+
+    @Override
+    @Transactional
+    public void updateUserStatus(Integer id, Integer status) {
+        User user = getById(id);
+        if (user == null) {
+            throw new BusinessException(404, "用户不存在");
+        }
+        // 禁止禁用管理员
+        if ("admin".equals(user.getUsername()) && status == 0) {
+            throw new BusinessException(400, "不能禁用管理员账号");
+        }
+        user.setStatus(status);
         user.setUpdatedAt(LocalDateTime.now());
         updateById(user);
     }

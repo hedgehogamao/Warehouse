@@ -1,12 +1,12 @@
 <template>
   <div class="login-container">
     <div class="login-card">
-      <h2 class="login-title">汽车配件门店管理系统</h2>
+      <h2 class="login-title">{{ t('login.title') }}</h2>
       <el-form ref="formRef" :model="form" :rules="rules" label-width="0">
         <el-form-item prop="username">
           <el-input
             v-model="form.username"
-            placeholder="请输入用户名"
+            :placeholder="t('login.usernamePlaceholder')"
             :prefix-icon="User"
             size="large"
           />
@@ -15,7 +15,7 @@
           <el-input
             v-model="form.password"
             type="password"
-            placeholder="请输入密码"
+            :placeholder="t('login.passwordPlaceholder')"
             :prefix-icon="Lock"
             size="large"
             show-password
@@ -30,7 +30,7 @@
             style="width: 100%"
             @click="handleLogin"
           >
-            登 录
+            {{ t('login.btn') }}
           </el-button>
         </el-form-item>
       </el-form>
@@ -41,10 +41,12 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { User, Lock } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/store'
 
+const { t } = useI18n()
 const router = useRouter()
 const userStore = useUserStore()
 const formRef = ref(null)
@@ -56,8 +58,8 @@ const form = reactive({
 })
 
 const rules = {
-  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+  username: [{ required: true, message: () => t('login.usernameRequired'), trigger: 'blur' }],
+  password: [{ required: true, message: () => t('login.passwordRequired'), trigger: 'blur' }]
 }
 
 async function handleLogin() {
@@ -67,7 +69,7 @@ async function handleLogin() {
   loading.value = true
   try {
     await userStore.login(form)
-    ElMessage.success('登录成功')
+    ElMessage.success(t('login.success'))
     router.push('/dashboard')
   } catch (error) {
     // 错误已在 request 拦截器中处理
@@ -83,19 +85,22 @@ async function handleLogin() {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #faf9f5;
 }
 .login-card {
-  width: 400px;
-  padding: 40px;
-  background: #fff;
+  width: 420px;
+  padding: 48px 40px;
+  background: #efe9de;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e6dfd8;
 }
 .login-title {
   text-align: center;
-  margin-bottom: 32px;
-  color: #333;
-  font-size: 22px;
+  margin-bottom: 36px;
+  color: #141413;
+  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 </style>

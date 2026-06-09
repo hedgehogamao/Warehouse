@@ -1,1 +1,18 @@
-/* 个人中心样式 - 待开发 */
+.container { padding: 24rpx; background: #faf9f5; min-height: 100vh; }
+.header { background: #181715; border-radius: 12rpx; padding: 40rpx; text-align: center; margin-bottom: 24rpx; }
+.header-title { display: block; color: #faf9f5; font-size: 36rpx; font-weight: 600; }
+.header-sub { display: block; color: #a09d96; font-size: 26rpx; margin-top: 8rpx; }
+.lang-section { background: #fff; border-radius: 12rpx; padding: 24rpx; margin-bottom: 24rpx; border: 1rpx solid #e6dfd8; }
+.lang-title { font-size: 28rpx; color: #6c6a64; margin-bottom: 12rpx; }
+.lang-options { display: flex; gap: 16rpx; }
+.lang-btn { flex: 1; text-align: center; padding: 16rpx; border-radius: 8rpx; font-size: 28rpx; border: 1rpx solid #e6dfd8; color: #3d3d3a; background: #faf9f5; }
+.lang-btn.active { background: #cc785c; color: #fff; border-color: #cc785c; }
+.form-section { background: #fff; border-radius: 12rpx; padding: 24rpx; margin-bottom: 24rpx; border: 1rpx solid #e6dfd8; }
+.form-title { font-size: 30rpx; font-weight: 600; color: #141413; margin-bottom: 16rpx; }
+.form-item { display: flex; align-items: center; padding: 12rpx 0; border-bottom: 1rpx solid #ebe6df; }
+.form-item:last-of-type { border-bottom: none; }
+.form-label { width: 100rpx; color: #8e8b82; font-size: 28rpx; flex-shrink: 0; }
+.form-input { flex: 1; font-size: 28rpx; color: #141413; }
+.save-btn { background: #cc785c; color: #fff; text-align: center; padding: 20rpx; border-radius: 8rpx; margin-top: 16rpx; font-size: 28rpx; }
+.action-section { background: #fff; border-radius: 12rpx; border: 1rpx solid #e6dfd8; overflow: hidden; }
+.action-item { padding: 28rpx 24rpx; font-size: 28rpx; color: #141413; }

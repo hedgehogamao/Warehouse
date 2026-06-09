@@ -26,12 +26,19 @@ export const useUserStore = defineStore('user', () => {
     const res = await loginApi(loginForm)
     const data = res.data
 
+    // 兼容后端返回格式（可能为 {token, userInfo:{...}} 或 {token, userId, ...} 平铺）
     token.value = data.token
-    userInfo.value = {
+    const info = data.userInfo || {
       userId: data.userId,
       username: data.username,
       realName: data.realName,
       role: data.role
+    }
+    userInfo.value = {
+      userId: info.userId || info.id,
+      username: info.username,
+      realName: info.realName,
+      role: info.role
     }
 
     localStorage.setItem('token', data.token)

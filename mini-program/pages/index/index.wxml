@@ -1,18 +1,34 @@
-<!--pages/index/index.wxml-->
 <view class="container">
-  <view class="welcome card">
-    <text class="title">汽车配件商城</text>
-    <text class="subtitle">优质配件，品质保障</text>
+  <view class="search-bar">
+    <input class="search-input" placeholder="{{t.searchPlaceholder}}" value="{{searchKeyword}}" bindinput="onSearchInput" bindconfirm="onSearch" />
   </view>
 
-  <view class="card">
-    <text class="section-title">热门分类</text>
+  <view class="section">
+    <view class="section-title">{{t.categories}}</view>
     <view class="categories">
-      <view class="category-item">机油</view>
-      <view class="category-item">滤芯</view>
-      <view class="category-item">刹车片</view>
-      <view class="category-item">轮胎</view>
-      <view class="category-item">其他</view>
+      <view class="category-item" wx:for="{{categories}}" wx:key="*this" bindtap="onCategoryTap" data-category="{{item}}">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">{{t.hotProducts}}</view>
+    <view class="product-list">
+      <view class="product-card" wx:for="{{hotProducts}}" wx:key="id">
+        <view class="product-main" bindtap="onProductTap" data-id="{{item.id}}">
+          <image class="product-img" src="{{item.imageUrl || '/images/tab/product.png'}}" mode="aspectFill" />
+          <view class="product-info">
+            <view class="product-name">{{item.name}}</view>
+            <view class="product-meta">{{item.brand}} · {{item.category}}</view>
+            <view class="product-bottom">
+              <text class="product-price">¥{{item.salePrice}}</text>
+              <text class="stock-tag {{item.stockStatus === 'OUT_OF_STOCK' ? 'out' : (item.stockStatus === 'LOW_STOCK' ? 'low' : '')}}">
+                {{item.stockStatus === 'OUT_OF_STOCK' ? t.outOfStock : (item.stockStatus === 'LOW_STOCK' ? t.lowStock : t.stock)}}
+              </text>
+            </view>
+          </view>
+        </view>
+        <view class="add-cart-btn" bindtap="onAddToCart" data-product="{{item}}" wx:if="{{item.stockStatus !== 'OUT_OF_STOCK'}}">{{t.addCartBtn}}</view>
+      </view>
     </view>
   </view>
 </view>

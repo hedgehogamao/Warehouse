@@ -1,1 +1,17 @@
-/* 订单页样式 - 待开发 */
+.container { padding: 24rpx; background: #faf9f5; min-height: 100vh; }
+.order-card { background: #fff; border-radius: 12rpx; padding: 24rpx; margin-bottom: 16rpx; border: 1rpx solid #e6dfd8; }
+.order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16rpx; }
+.order-no { font-size: 26rpx; color: #6c6a64; }
+.order-status { font-size: 24rpx; font-weight: 500; }
+.order-status.paid { color: #5db872; }
+.order-status.refunded { color: #8e8b82; }
+.order-items { border-top: 1rpx solid #ebe6df; border-bottom: 1rpx solid #ebe6df; padding: 12rpx 0; }
+.order-item { display: flex; justify-content: space-between; align-items: center; padding: 6rpx 0; }
+.item-name { flex: 1; font-size: 28rpx; color: #141413; }
+.item-qty { font-size: 26rpx; color: #8e8b82; margin: 0 16rpx; }
+.item-price { font-size: 28rpx; color: #3d3d3a; }
+.order-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12rpx; }
+.order-date { font-size: 24rpx; color: #8e8b82; }
+.order-total { font-size: 30rpx; font-weight: 600; color: #cc785c; }
+.loading-tip { text-align: center; color: #8e8b82; padding: 24rpx; font-size: 24rpx; }
+.empty-tip { text-align: center; color: #8e8b82; padding: 120rpx 0; font-size: 28rpx; }

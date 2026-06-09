@@ -1,0 +1,41 @@
+.container { padding: 24rpx; background: #faf9f5; min-height: 100vh; }
+.scan-section { text-align: center; margin-bottom: 24rpx; }
+.scan-btn {
+  display: inline-flex; flex-direction: column; align-items: center;
+  background: #181715; border-radius: 16rpx; padding: 40rpx 80rpx;
+}
+.scan-icon { font-size: 64rpx; margin-bottom: 8rpx; }
+.scan-text { color: #faf9f5; font-size: 30rpx; font-weight: 500; }
+.scan-tip { font-size: 24rpx; color: #8e8b82; margin-top: 12rpx; }
+
+.manual-section { margin-bottom: 24rpx; }
+.manual-row { display: flex; gap: 12rpx; }
+.sku-input { flex: 1; background: #efe9de; border-radius: 12rpx; padding: 16rpx 24rpx; font-size: 28rpx; }
+.search-btn { background: #cc785c; color: #fff; padding: 16rpx 32rpx; border-radius: 12rpx; font-size: 28rpx; white-space: nowrap; }
+
+.product-section { background: #fff; border-radius: 12rpx; padding: 24rpx; border: 1rpx solid #e6dfd8; }
+.product-card { display: flex; margin-bottom: 24rpx; }
+.product-img { width: 160rpx; height: 160rpx; border-radius: 8rpx; background: #efe9de; margin-right: 20rpx; flex-shrink: 0; }
+.product-info { flex: 1; }
+.product-name { font-size: 30rpx; font-weight: 600; color: #141413; margin-bottom: 8rpx; }
+.product-meta { font-size: 24rpx; color: #8e8b82; margin-bottom: 8rpx; }
+.product-stock { font-size: 28rpx; color: #cc785c; font-weight: 500; }
+
+.qty-section { display: flex; align-items: center; justify-content: space-between; padding: 16rpx 0; border-top: 1rpx solid #ebe6df; }
+.qty-label { font-size: 28rpx; color: #141413; }
+.qty-control { display: flex; align-items: center; gap: 16rpx; }
+.qty-btn { width: 56rpx; height: 56rpx; background: #efe9de; border-radius: 8rpx; text-align: center; line-height: 56rpx; font-size: 32rpx; color: #141413; }
+.qty-input { width: 80rpx; text-align: center; font-size: 32rpx; font-weight: 600; color: #141413; }
+
+.remark-section { display: flex; align-items: center; padding: 16rpx 0; border-top: 1rpx solid #ebe6df; }
+.remark-label { font-size: 28rpx; color: #141413; width: 80rpx; flex-shrink: 0; }
+.remark-input { flex: 1; font-size: 28rpx; }
+
+.confirm-btn {
+  background: #cc785c; color: #fff; text-align: center;
+  padding: 24rpx; border-radius: 12rpx; margin-top: 24rpx;
+  font-size: 32rpx; font-weight: 500;
+}
+.confirm-btn.disabled { background: #e6dfd8; color: #8e8b82; }
+
+.empty-tip { text-align: center; padding: 120rpx 0; color: #8e8b82; font-size: 28rpx; }

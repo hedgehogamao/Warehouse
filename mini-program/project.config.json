@@ -37,11 +37,20 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "compileWorklet": false,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "3.3.4",
-  "appid": "your-appid-here",
+  "libVersion": "3.16.1",
+  "appid": "wx10cffde6f646109c",
   "projectname": "auto-parts-miniapp",
-  "condition": {}
+  "condition": {},
+  "simulatorPluginLibVersion": {},
+  "editorSetting": {}
 }

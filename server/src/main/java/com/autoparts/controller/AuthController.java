@@ -42,7 +42,14 @@ public class AuthController {
      */
     @GetMapping("/me")
     public Result<UserDTO> getCurrentUser(Authentication authentication) {
-        Integer userId = (Integer) authentication.getPrincipal();
+        Object principal = authentication.getPrincipal();
+        Integer userId;
+        if (principal instanceof Integer) {
+            userId = (Integer) principal;
+        } else {
+            // CUSTOMER 角色的 principal 是字符串
+            userId = Integer.parseInt(principal.toString());
+        }
         UserDTO user = userService.getUserById(userId);
         return Result.success(user);
     }

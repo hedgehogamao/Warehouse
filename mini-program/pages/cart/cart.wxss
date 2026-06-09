@@ -1,0 +1,23 @@
+.container { padding: 24rpx; background: #faf9f5; min-height: 100vh; }
+.cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16rpx; font-size: 26rpx; color: #6c6a64; }
+.clear-btn { color: #c64545; font-size: 26rpx; }
+.cart-item { background: #fff; border-radius: 12rpx; padding: 20rpx; margin-bottom: 12rpx; border: 1rpx solid #e6dfd8; }
+.item-info { margin-bottom: 12rpx; }
+.item-name { font-size: 28rpx; font-weight: 500; color: #141413; }
+.item-sku { font-size: 22rpx; color: #8e8b82; margin-top: 4rpx; }
+.item-price { font-size: 28rpx; color: #cc785c; font-weight: 600; margin-top: 4rpx; }
+.item-actions { display: flex; align-items: center; gap: 16rpx; }
+.qty-btn { width: 48rpx; height: 48rpx; background: #efe9de; border-radius: 8rpx; text-align: center; line-height: 48rpx; font-size: 28rpx; color: #141413; }
+.qty-num { font-size: 28rpx; min-width: 48rpx; text-align: center; color: #141413; }
+.delete-btn { margin-left: auto; font-size: 24rpx; color: #c64545; }
+.item-subtotal { text-align: right; font-size: 26rpx; color: #3d3d3a; margin-top: 8rpx; }
+.total-section { display: flex; justify-content: space-between; align-items: center; padding: 24rpx; background: #fff; border-radius: 12rpx; margin-top: 16rpx; border: 1rpx solid #e6dfd8; }
+.total-label { font-size: 32rpx; font-weight: 600; color: #141413; }
+.total-amount { font-size: 40rpx; font-weight: 600; color: #cc785c; }
+.tip-section { background: #fff; border-radius: 12rpx; padding: 24rpx; margin-top: 16rpx; border: 1rpx solid #e6dfd8; }
+.tip-text { font-size: 26rpx; color: #6c6a64; line-height: 1.8; }
+.contact-btn { background: #181715; color: #faf9f5; text-align: center; padding: 24rpx; border-radius: 12rpx; margin-top: 24rpx; font-size: 30rpx; font-weight: 500; }
+.empty-cart { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 200rpx 0; }
+.empty-icon { font-size: 80rpx; margin-bottom: 16rpx; }
+.empty-text { font-size: 28rpx; color: #8e8b82; margin-bottom: 24rpx; }
+.go-shop { background: #cc785c; color: #fff; padding: 16rpx 48rpx; border-radius: 8rpx; font-size: 28rpx; }

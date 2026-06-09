@@ -1,0 +1,29 @@
+# Java / Maven
+server/target/
+*.class
+*.jar
+*.war
+
+# Node
+admin/node_modules/
+admin/dist/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Uploads
+server/uploads/
+
+# Logs
+*.log
+
+# Claude
+.claude/
+
+# WeChat mini program local config
+mini-program/project.private.config.json

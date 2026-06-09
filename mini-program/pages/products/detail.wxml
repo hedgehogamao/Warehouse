@@ -1,0 +1,26 @@
+<view class="container" wx:if="{{product}}">
+  <image class="product-image" src="{{product.imageUrl || '/images/tab/product.png'}}" mode="aspectFill" />
+  <view class="info-section">
+    <view class="product-name">{{product.name}}</view>
+    <view class="product-price">¥{{product.salePrice}}</view>
+    <view class="stock-status {{product.stockStatus === 'OUT_OF_STOCK' ? 'out' : (product.stockStatus === 'LOW_STOCK' ? 'low' : '')}}">
+      {{product.stockStatus === 'OUT_OF_STOCK' ? t.outOfStockStatus : (product.stockStatus === 'LOW_STOCK' ? t.lowStock : t.stock)}}{{t.stockInfo.replace('{count}', product.stock)}}
+    </view>
+  </view>
+  <view class="detail-section">
+    <view class="detail-row" wx:if="{{product.brand}}"><text class="detail-label">{{t.brand}}</text><text class="detail-value">{{product.brand}}</text></view>
+    <view class="detail-row" wx:if="{{product.sku}}"><text class="detail-label">{{t.sku}}</text><text class="detail-value">{{product.sku}}</text></view>
+    <view class="detail-row" wx:if="{{product.category}}"><text class="detail-label">{{t.category}}</text><text class="detail-value">{{product.category}}</text></view>
+    <view class="detail-row" wx:if="{{product.carModel}}"><text class="detail-label">{{t.carModel}}</text><text class="detail-value">{{product.carModel}}</text></view>
+  </view>
+  <view class="desc-section" wx:if="{{product.description}}">
+    <view class="desc-title">{{t.description}}</view>
+    <view class="desc-content">{{product.description}}</view>
+  </view>
+  <view class="bottom-bar">
+    <view class="go-cart" bindtap="onGoCart">{{t.goCart}}</view>
+    <view class="add-cart" bindtap="onAddToCart" wx:if="{{product.stockStatus !== 'OUT_OF_STOCK'}}">{{t.addCart}}</view>
+    <view class="add-cart disabled" wx:else>{{t.outOfStock}}</view>
+  </view>
+</view>
+<view class="loading" wx:if="{{loading}}">{{t.loading}}</view>

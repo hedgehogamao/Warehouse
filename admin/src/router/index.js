@@ -18,6 +18,54 @@ const routes = [
         name: 'Dashboard',
         component: () => import('@/views/Dashboard.vue'),
         meta: { title: '首页' }
+      },
+      {
+        path: 'users',
+        name: 'UserManagement',
+        component: () => import('@/views/UserManagement.vue'),
+        meta: { title: '用户管理' }
+      },
+      {
+        path: 'products',
+        name: 'ProductManagement',
+        component: () => import('@/views/ProductManagement.vue'),
+        meta: { title: '商品管理' }
+      },
+      {
+        path: 'stock-in',
+        name: 'StockIn',
+        component: () => import('@/views/StockIn.vue'),
+        meta: { title: '入库管理' }
+      },
+      {
+        path: 'inventory',
+        name: 'Inventory',
+        component: () => import('@/views/Inventory.vue'),
+        meta: { title: '库存管理' }
+      },
+      {
+        path: 'sales',
+        name: 'POS',
+        component: () => import('@/views/POS.vue'),
+        meta: { title: 'POS 收银' }
+      },
+      {
+        path: 'orders',
+        name: 'OrderList',
+        component: () => import('@/views/OrderList.vue'),
+        meta: { title: '订单管理' }
+      },
+      {
+        path: 'history',
+        name: 'History',
+        component: () => import('@/views/History.vue'),
+        meta: { title: '历史记录' }
+      },
+      {
+        path: 'statistics',
+        name: 'Statistics',
+        component: () => import('@/views/Statistics.vue'),
+        meta: { title: '数据统计' }
       }
     ]
   }

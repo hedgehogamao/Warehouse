@@ -1,0 +1,56 @@
+<view class="container">
+  <!-- 扫码区域 -->
+  <view class="scan-section">
+    <view class="scan-btn" bindtap="onScan">
+      <text class="scan-icon">📷</text>
+      <text class="scan-text">{{t.scanBtn}}</text>
+    </view>
+    <view class="scan-tip">{{t.scanTip}}</view>
+  </view>
+
+  <!-- 手动输入 SKU -->
+  <view class="manual-section">
+    <view class="manual-row">
+      <input class="sku-input" placeholder="{{t.skuPlaceholder}}" bindinput="onSkuInput" bindconfirm="onSkuSearch" />
+      <view class="search-btn" bindtap="onSkuSearch">{{t.search}}</view>
+    </view>
+  </view>
+
+  <!-- 商品信息 -->
+  <view class="product-section" wx:if="{{product}}">
+    <view class="product-card">
+      <image class="product-img" src="{{product.imageUrl || '/images/tab/product.png'}}" mode="aspectFill" />
+      <view class="product-info">
+        <view class="product-name">{{product.name}}</view>
+        <view class="product-meta">{{t.sku}}: {{product.sku}} · {{t.brand}}: {{product.brand}}</view>
+        <view class="product-stock">{{t.currentStock}}: {{product.stock}}</view>
+      </view>
+    </view>
+
+    <!-- 数量 -->
+    <view class="qty-section">
+      <text class="qty-label">{{t.outQty}}</text>
+      <view class="qty-control">
+        <view class="qty-btn" bindtap="onQtyMinus">-</view>
+        <input class="qty-input" type="number" value="{{quantity}}" bindinput="onQuantityChange" />
+        <view class="qty-btn" bindtap="onQtyPlus">+</view>
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class="remark-section">
+      <text class="remark-label">{{t.remark}}</text>
+      <input class="remark-input" placeholder="{{t.remarkPlaceholder}}" value="{{remark}}" bindinput="onRemarkInput" />
+    </view>
+
+    <!-- 确认按钮 -->
+    <view class="confirm-btn {{submitting ? 'disabled' : ''}}" bindtap="onConfirm">
+      {{submitting ? '...' : t.confirmOut}}
+    </view>
+  </view>
+
+  <!-- 未找到商品提示 -->
+  <view class="empty-tip" wx:if="{{!product}}">
+    <text>📷 {{t.scanTip}}</text>
+  </view>
+</view>

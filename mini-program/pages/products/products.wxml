@@ -1,6 +1,26 @@
-<!--pages/products/products.wxml-->
 <view class="container">
-  <view class="card">
-    <text>商品列表 — 待开发</text>
+  <view class="search-bar">
+    <input class="search-input" placeholder="{{t.searchPlaceholder}}" value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearch" />
   </view>
+  <view class="product-list">
+    <view class="product-card" wx:for="{{products}}" wx:key="id">
+      <view class="product-main" bindtap="onProductTap" data-id="{{item.id}}">
+        <image class="product-img" src="{{item.imageUrl || '/images/tab/product.png'}}" mode="aspectFill" />
+        <view class="product-info">
+          <view class="product-name">{{item.name}}</view>
+          <view class="product-meta">{{item.brand}} · {{item.category}}</view>
+          <view class="product-bottom">
+            <text class="product-price">¥{{item.salePrice}}</text>
+            <text class="stock-tag {{item.stockStatus === 'OUT_OF_STOCK' ? 'out' : (item.stockStatus === 'LOW_STOCK' ? 'low' : '')}}">
+              {{item.stockStatus === 'OUT_OF_STOCK' ? t.outOfStock : (item.stockStatus === 'LOW_STOCK' ? t.lowStock : t.inStock)}}
+            </text>
+          </view>
+        </view>
+      </view>
+      <view class="add-cart-btn" bindtap="onAddToCart" data-product="{{item}}" wx:if="{{item.stockStatus !== 'OUT_OF_STOCK'}}">{{t.addCartBtn}}</view>
+    </view>
+  </view>
+  <view class="loading-tip" wx:if="{{loading}}">{{t.loading}}</view>
+  <view class="loading-tip" wx:if="{{noMore && products.length > 0}}">{{t.noMore}}</view>
+  <view class="empty-tip" wx:if="{{!loading && products.length === 0}}">{{t.noData}}</view>
 </view>
