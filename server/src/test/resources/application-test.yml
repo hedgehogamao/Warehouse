@@ -1,0 +1,28 @@
+# 测试环境配置
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-h2.sql
+
+# 微信小程序配置（测试模式使用 mock）
+wechat:
+  miniapp:
+    app-id: test-app-id
+    app-secret: test-app-secret
+    login-url: https://api.weixin.qq.com/sns/jscode2session
+
+# JWT 配置
+jwt:
+  secret: test-jwt-secret-key-must-be-at-least-256-bits-long-for-hs256-algorithm
+  expiration: 86400000  # 24小时
+
+# 关闭 SQL 日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
