@@ -66,7 +66,7 @@ const hasMore = ref(true)
 function getImageUrl(url) {
   if (!url) return ''
   if (url.startsWith('http')) return url
-  return 'https://warehouse-production-d396.up.railway.app' + url
+  return url
 }
 
 function getStockType(status) {

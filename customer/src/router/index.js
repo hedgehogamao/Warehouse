@@ -47,13 +47,13 @@ const routes = [
         path: 'orders',
         name: 'Orders',
         component: () => import('@/views/Orders.vue'),
-        meta: { title: '购买记录' }
+        meta: { title: '购买记录', requiresAuth: false }
       },
       {
         path: 'profile',
         name: 'Profile',
         component: () => import('@/views/Profile.vue'),
-        meta: { title: '个人中心' }
+        meta: { title: '个人中心', requiresAuth: false }
       }
     ]
   }
