@@ -108,7 +108,7 @@
     "importTitle": "Importar Productos Masivamente",
     "importTip": "Suba archivo Excel (.xlsx), primera fila = encabezado",
     "downloadTemplate": "Descargar Plantilla",
-    "importSuccess": "Importación completada: {success} exitosos, {skipped} omitidos",
+    "importSuccess": "Importación completada: {success} exitosos, {skipped} omitidos, {images} imágenes",
     "importFailed": "Importación fallida",
     "importErrors": "Detalles de errores",
     "row": "Fila",

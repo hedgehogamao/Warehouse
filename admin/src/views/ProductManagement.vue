@@ -130,7 +130,7 @@
 
         <div v-if="importResult" class="import-result">
           <el-alert
-            :title="t('product.importSuccess', { success: importResult.success, skipped: importResult.skipped })"
+            :title="t('product.importSuccess', { success: importResult.success, skipped: importResult.skipped, images: importResult.images || 0 })"
             type="success"
             :closable="false"
             show-icon
@@ -274,7 +274,7 @@ async function handleImport() {
   try {
     const res = await importProducts(importFile.value)
     importResult.value = res.data
-    ElMessage.success(t('product.importSuccess', { success: res.data.success, skipped: res.data.skipped }))
+    ElMessage.success(t('product.importSuccess', { success: res.data.success, skipped: res.data.skipped, images: res.data.images || 0 }))
     loadProducts()
     loadCategories()
   } catch (e) {

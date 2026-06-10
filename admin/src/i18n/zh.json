@@ -108,7 +108,7 @@
     "importTitle": "批量导入商品",
     "importTip": "上传 Excel 文件（.xlsx），第一行为表头",
     "downloadTemplate": "下载模板",
-    "importSuccess": "导入完成：成功 {success} 条，跳过 {skipped} 条",
+    "importSuccess": "导入完成：成功 {success} 条，跳过 {skipped} 条，图片 {images} 张",
     "importFailed": "导入失败",
     "importErrors": "错误详情",
     "row": "行",

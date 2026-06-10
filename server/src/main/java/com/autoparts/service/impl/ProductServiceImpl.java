@@ -10,21 +10,25 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.util.IOUtils;
+import org.apache.poi.xssf.usermodel.XSSFAnchor;
+import org.apache.poi.xssf.usermodel.XSSFDrawing;
+import org.apache.poi.xssf.usermodel.XSSFPicture;
+import org.apache.poi.xssf.usermodel.XSSFShape;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 商品业务逻辑实现
@@ -32,7 +36,15 @@ import java.util.Map;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private static final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
+
     private final ProductMapper productMapper;
+
+    @Value("${upload.path:uploads/images}")
+    private String uploadPath;
+
+    @Value("${upload.url-prefix:/uploads/images}")
+    private String uploadUrlPrefix;
 
     public ProductServiceImpl(ProductMapper productMapper) {
         this.productMapper = productMapper;
@@ -191,27 +203,46 @@ public class ProductServiceImpl implements ProductService {
     public Map<String, Object> importProducts(MultipartFile file) {
         int successCount = 0;
         int skippedCount = 0;
+        int imageCount = 0;
         List<Map<String, Object>> errors = new ArrayList<>();
 
         try (InputStream is = file.getInputStream(); Workbook workbook = new XSSFWorkbook(is)) {
             Sheet sheet = workbook.getSheetAt(0);
             int lastRow = sheet.getLastRowNum();
 
+            // 读取表头行，建立列名 → 列索引的映射
+            Row headerRow = sheet.getRow(0);
+            if (headerRow == null) {
+                throw new BusinessException(400, "文件第一行（表头）为空");
+            }
+            Map<String, Integer> columnMap = buildColumnMap(headerRow);
+
+            // 校验必填列是否存在
+            if (!columnMap.containsKey("name") || !columnMap.containsKey("sku") || !columnMap.containsKey("salePrice")) {
+                throw new BusinessException(400, "表头缺少必填列。需要：商品名称、SKU、售价。实际表头: " + getHeaderNames(headerRow));
+            }
+
+            // 提取 Excel 内嵌图片，建立 行号 → 图片数据 的映射
+            Map<Integer, PictureData> rowImages = extractRowImages(sheet);
+            if (!rowImages.isEmpty()) {
+                log.info("从 Excel 中提取到 {} 张内嵌图片", rowImages.size());
+            }
+
             for (int i = 1; i <= lastRow; i++) { // 从第 2 行开始（跳过表头）
                 Row row = sheet.getRow(i);
                 if (row == null) continue;
 
                 try {
-                    String name = getCellStringValue(row.getCell(0));
-                    String sku = getCellStringValue(row.getCell(1));
-                    String brand = getCellStringValue(row.getCell(2));
-                    String carModel = getCellStringValue(row.getCell(3));
-                    String category = getCellStringValue(row.getCell(4));
-                    String unit = getCellStringValue(row.getCell(5));
-                    BigDecimal costPrice = getCellBigDecimalValue(row.getCell(6));
-                    BigDecimal salePrice = getCellBigDecimalValue(row.getCell(7));
-                    Integer minStock = getCellIntegerValue(row.getCell(8));
-                    String description = getCellStringValue(row.getCell(9));
+                    String name = getColumnStringValue(row, columnMap, "name");
+                    String sku = getColumnStringValue(row, columnMap, "sku");
+                    String brand = getColumnStringValue(row, columnMap, "brand");
+                    String carModel = getColumnStringValue(row, columnMap, "carModel");
+                    String category = getColumnStringValue(row, columnMap, "category");
+                    String unit = getColumnStringValue(row, columnMap, "unit");
+                    BigDecimal costPrice = getColumnBigDecimalValue(row, columnMap, "costPrice");
+                    BigDecimal salePrice = getColumnBigDecimalValue(row, columnMap, "salePrice");
+                    Integer minStock = getColumnIntegerValue(row, columnMap, "minStock");
+                    String description = getColumnStringValue(row, columnMap, "description");
 
                     // 必填校验
                     if (name == null || name.isBlank()) {
@@ -255,21 +286,134 @@ public class ProductServiceImpl implements ProductService {
                     product.setCreatedAt(LocalDateTime.now());
                     product.setUpdatedAt(LocalDateTime.now());
 
+                    // 处理图片：优先使用 Excel 内嵌图片，其次使用"图片"列的 URL
+                    PictureData pictureData = rowImages.get(i);
+                    if (pictureData != null) {
+                        String suffix = getFileSuffix(pictureData.getMimeType());
+                        String imageUrl = saveImage(pictureData.getData(), suffix);
+                        product.setImageUrl(imageUrl);
+                        imageCount++;
+                    } else {
+                        // 检查是否有"图片"列
+                        String imageUrlFromColumn = getColumnStringValue(row, columnMap, "image");
+                        if (imageUrlFromColumn != null && !imageUrlFromColumn.isBlank()) {
+                            product.setImageUrl(imageUrlFromColumn.trim());
+                        }
+                    }
+
                     productMapper.insert(product);
                     successCount++;
                 } catch (Exception e) {
                     addError(errors, i + 1, e.getMessage());
                 }
             }
+        } catch (BusinessException e) {
+            throw e;
         } catch (IOException e) {
             throw new BusinessException(400, "文件读取失败: " + e.getMessage());
         }
 
+        log.info("导入完成：成功 {} 条，跳过 {} 条，图片 {} 张，错误 {} 条",
+                successCount, skippedCount, imageCount, errors.size());
+
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("success", successCount);
         result.put("skipped", skippedCount);
+        result.put("images", imageCount);
         result.put("errors", errors);
         return result;
+    }
+
+    /**
+     * 根据表头行建立列名映射，支持中英文多种表头名称
+     * 例如："商品名称"、"名称"、"name" 都映射到字段 "name"
+     */
+    private Map<String, Integer> buildColumnMap(Row headerRow) {
+        Map<String, Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < headerRow.getLastCellNum(); i++) {
+            Cell cell = headerRow.getCell(i);
+            if (cell == null) continue;
+            String header = getCellStringValue(cell);
+            if (header == null) continue;
+            header = header.trim().toLowerCase().replace("*", "").replace(" ", "");
+
+            // 商品名称
+            if (header.contains("商品名称") || header.contains("名称") || header.equals("name") || header.contains("productname")) {
+                map.putIfAbsent("name", i);
+            }
+            // SKU
+            else if (header.equals("sku") || header.contains("商品编码") || header.contains("商品编号") || header.contains("productcode")) {
+                map.putIfAbsent("sku", i);
+            }
+            // 品牌
+            else if (header.contains("品牌") || header.equals("brand")) {
+                map.putIfAbsent("brand", i);
+            }
+            // 车型
+            else if (header.contains("车型") || header.contains("适配") || header.contains("carmodel") || header.contains("carmodels")) {
+                map.putIfAbsent("carModel", i);
+            }
+            // 分类
+            else if (header.contains("分类") || header.equals("category")) {
+                map.putIfAbsent("category", i);
+            }
+            // 单位
+            else if (header.contains("单位") || header.equals("unit")) {
+                map.putIfAbsent("unit", i);
+            }
+            // 进价
+            else if (header.contains("进价") || header.contains("成本") || header.contains("costprice") || header.contains("cost")) {
+                map.putIfAbsent("costPrice", i);
+            }
+            // 售价
+            else if (header.contains("售价") || header.contains("销售") || header.contains("saleprice") || header.contains("price")) {
+                map.putIfAbsent("salePrice", i);
+            }
+            // 库存预警
+            else if (header.contains("库存预警") || header.contains("最低库存") || header.contains("minstock") || header.contains("预警")) {
+                map.putIfAbsent("minStock", i);
+            }
+            // 描述
+            else if (header.contains("描述") || header.equals("description")) {
+                map.putIfAbsent("description", i);
+            }
+            // 图片
+            else if (header.contains("图片") || header.contains("image") || header.contains("photo") || header.contains("picture")) {
+                map.putIfAbsent("image", i);
+            }
+        }
+        return map;
+    }
+
+    /** 获取表头名称列表（用于错误提示） */
+    private String getHeaderNames(Row headerRow) {
+        List<String> names = new ArrayList<>();
+        for (int i = 0; i < headerRow.getLastCellNum(); i++) {
+            Cell cell = headerRow.getCell(i);
+            names.add(cell != null ? getCellStringValue(cell) : "空");
+        }
+        return String.join(", ", names);
+    }
+
+    /** 根据列映射读取字符串值 */
+    private String getColumnStringValue(Row row, Map<String, Integer> columnMap, String field) {
+        Integer colIndex = columnMap.get(field);
+        if (colIndex == null) return null;
+        return getCellStringValue(row.getCell(colIndex));
+    }
+
+    /** 根据列映射读取 BigDecimal 值 */
+    private BigDecimal getColumnBigDecimalValue(Row row, Map<String, Integer> columnMap, String field) {
+        Integer colIndex = columnMap.get(field);
+        if (colIndex == null) return null;
+        return getCellBigDecimalValue(row.getCell(colIndex));
+    }
+
+    /** 根据列映射读取 Integer 值 */
+    private Integer getColumnIntegerValue(Row row, Map<String, Integer> columnMap, String field) {
+        Integer colIndex = columnMap.get(field);
+        if (colIndex == null) return null;
+        return getCellIntegerValue(row.getCell(colIndex));
     }
 
     @Override
@@ -277,8 +421,8 @@ public class ProductServiceImpl implements ProductService {
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet("商品导入模板");
 
-            // 表头
-            String[] headers = {"商品名称*", "SKU*", "品牌", "车型", "分类", "单位", "进价", "售价*", "库存预警", "描述"};
+            // 表头（最后一列为"图片"，用于填写图片URL；内嵌图片自动识别）
+            String[] headers = {"商品名称*", "SKU*", "品牌", "车型", "分类", "单位", "进价", "售价*", "库存预警", "描述", "图片"};
             Row headerRow = sheet.createRow(0);
             for (int i = 0; i < headers.length; i++) {
                 Cell cell = headerRow.createCell(i);
@@ -373,5 +517,77 @@ public class ProductServiceImpl implements ProductService {
         error.put("row", row);
         error.put("reason", reason);
         errors.add(error);
+    }
+
+    /**
+     * 从 Excel 工作表中提取内嵌图片，建立 行号 → 图片数据 的映射
+     * 根据图片锚点的左上角行号来确定图片属于哪一行
+     */
+    private Map<Integer, PictureData> extractRowImages(Sheet sheet) {
+        Map<Integer, PictureData> rowImages = new HashMap<>();
+        try {
+            Drawing<?> drawing = sheet.getDrawingPatriarch();
+            if (drawing == null) return rowImages;
+
+            if (drawing instanceof XSSFDrawing xssfDrawing) {
+                for (XSSFShape shape : xssfDrawing.getShapes()) {
+                    if (shape instanceof XSSFPicture picture) {
+                        XSSFAnchor anchor = picture.getAnchor();
+                        int rowIndex;
+                        if (anchor instanceof org.apache.poi.xssf.usermodel.XSSFClientAnchor clientAnchor) {
+                            rowIndex = clientAnchor.getRow1();
+                        } else {
+                            // 非 ClientAnchor 类型的锚点，跳过
+                            continue;
+                        }
+                        PictureData pictureData = picture.getPictureData();
+                        if (pictureData != null && pictureData.getData() != null) {
+                            rowImages.put(rowIndex, pictureData);
+                            log.debug("找到图片：行 {}，类型 {}，大小 {} bytes",
+                                    rowIndex, pictureData.getMimeType(), pictureData.getData().length);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.warn("提取 Excel 内嵌图片失败（可能没有图片）: {}", e.getMessage());
+        }
+        return rowImages;
+    }
+
+    /**
+     * 保存图片文件到 uploads/images/ 目录
+     * @param data   图片二进制数据
+     * @param suffix 文件后缀（如 .png, .jpg）
+     * @return 图片的访问 URL（如 /uploads/images/xxx.png）
+     */
+    private String saveImage(byte[] data, String suffix) throws IOException {
+        String basePath = System.getProperty("user.dir");
+        File dir = new File(basePath, uploadPath);
+        if (!dir.exists() && !dir.mkdirs()) {
+            throw new IOException("无法创建图片目录: " + dir.getAbsolutePath());
+        }
+
+        String fileName = UUID.randomUUID().toString().replace("-", "") + suffix;
+        File file = new File(dir, fileName);
+
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(data);
+            fos.flush();
+        }
+
+        return uploadUrlPrefix + "/" + fileName;
+    }
+
+    /** 根据 MIME 类型返回文件后缀 */
+    private String getFileSuffix(String mimeType) {
+        if (mimeType == null) return ".png";
+        return switch (mimeType.toLowerCase()) {
+            case "image/jpeg", "image/jpg" -> ".jpg";
+            case "image/gif" -> ".gif";
+            case "image/webp" -> ".webp";
+            case "image/bmp" -> ".bmp";
+            default -> ".png";
+        };
     }
 }
