@@ -49,7 +49,8 @@ export function importProducts(file) {
   const formData = new FormData()
   formData.append('file', file)
   return request.post('/products/import', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' }
+    headers: { 'Content-Type': 'multipart/form-data' },
+    timeout: 300000 // 5分钟超时，支持大文件上传
   })
 }
 
