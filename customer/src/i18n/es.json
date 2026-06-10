@@ -1,105 +1,105 @@
 {
   "app": {
-    "name": "Auto Parts Mall",
-    "slogan": "The best parts for your vehicle"
+    "name": "Tienda de Autopartes",
+    "slogan": "Las mejores piezas para su vehículo"
   },
   "nav": {
-    "home": "Home",
-    "products": "Products",
-    "cart": "Cart",
-    "orders": "Orders",
-    "profile": "Profile"
+    "home": "Inicio",
+    "products": "Productos",
+    "cart": "Carrito",
+    "orders": "Mis Pedidos",
+    "profile": "Mi Cuenta"
   },
   "login": {
-    "title": "Login",
-    "phone": "Phone",
-    "password": "Password",
-    "submit": "Login",
-    "noAccount": "Don't have an account?",
-    "register": "Register",
-    "expired": "Session expired, please login again",
-    "success": "Login successful"
+    "title": "Iniciar Sesión",
+    "phone": "Teléfono",
+    "password": "Contraseña",
+    "submit": "Iniciar Sesión",
+    "noAccount": "¿No tiene cuenta?",
+    "register": "Registrarse",
+    "expired": "Sesión expirada, por favor inicie sesión nuevamente",
+    "success": "Sesión iniciada correctamente"
   },
   "register": {
-    "title": "Register",
-    "phone": "Phone",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "name": "Name (optional)",
-    "submit": "Register",
-    "hasAccount": "Already have an account?",
-    "login": "Login",
-    "success": "Registration successful",
-    "passwordMismatch": "Passwords do not match"
+    "title": "Registro",
+    "phone": "Teléfono",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "name": "Nombre (opcional)",
+    "submit": "Registrarse",
+    "hasAccount": "¿Ya tiene cuenta?",
+    "login": "Iniciar Sesión",
+    "success": "Registro exitoso",
+    "passwordMismatch": "Las contraseñas no coinciden"
   },
   "home": {
-    "searchPlaceholder": "Search parts...",
-    "hotProducts": "Hot Products",
-    "viewAll": "View All",
-    "addToCart": "Add to Cart"
+    "searchPlaceholder": "Buscar repuestos...",
+    "hotProducts": "Productos Populares",
+    "viewAll": "Ver Todo",
+    "addToCart": "Agregar al Carrito"
   },
   "products": {
-    "searchPlaceholder": "Search by name, brand...",
-    "allCategories": "All",
-    "noProducts": "No products available",
-    "addToCart": "Add to Cart"
+    "searchPlaceholder": "Buscar por nombre, marca...",
+    "allCategories": "Todos",
+    "noProducts": "No hay productos disponibles",
+    "addToCart": "Agregar al Carrito"
   },
   "product": {
     "stock": "Stock",
-    "brand": "Brand",
-    "sku": "SKU",
-    "category": "Category",
-    "carModel": "Compatible Models",
-    "description": "Description",
-    "addToCart": "Add to Cart",
-    "goToCart": "Go to Cart",
-    "outOfStock": "Out of Stock"
+    "brand": "Marca",
+    "sku": "Código",
+    "category": "Categoría",
+    "carModel": "Modelos Compatibles",
+    "description": "Descripción",
+    "addToCart": "Agregar al Carrito",
+    "goToCart": "Ir al Carrito",
+    "outOfStock": "Agotado"
   },
   "cart": {
-    "title": "Shopping Cart",
-    "empty": "Your cart is empty",
-    "goShopping": "Go Shopping",
+    "title": "Carrito de Compras",
+    "empty": "Su carrito está vacío",
+    "goShopping": "Ir de Compras",
     "total": "Total",
-    "clear": "Clear Cart",
-    "tip1": "Please bring this list to the store for checkout",
-    "tip2": "The clerk will create your order and collect payment",
-    "contactStore": "Contact Store",
-    "delete": "Delete"
+    "clear": "Vaciar Carrito",
+    "tip1": "Por favor traiga esta lista a la tienda para el pago",
+    "tip2": "El vendedor creará su pedido y cobrará",
+    "contactStore": "Contactar Tienda",
+    "delete": "Eliminar"
   },
   "orders": {
-    "title": "Purchase History",
-    "empty": "No orders yet",
-    "orderNo": "Order #",
+    "title": "Historial de Compras",
+    "empty": "Aún no tiene pedidos",
+    "orderNo": "Pedido #",
     "total": "Total",
     "status": {
-      "PAID": "Paid",
-      "REFUNDED": "Refunded"
+      "PAID": "Pagado",
+      "REFUNDED": "Reembolsado"
     }
   },
   "profile": {
-    "title": "Profile",
-    "name": "Name",
-    "phone": "Phone",
-    "save": "Save",
-    "logout": "Logout",
-    "language": "Language",
-    "saveSuccess": "Saved successfully"
+    "title": "Mi Cuenta",
+    "name": "Nombre",
+    "phone": "Teléfono",
+    "save": "Guardar",
+    "logout": "Cerrar Sesión",
+    "language": "Idioma",
+    "saveSuccess": "Guardado exitosamente"
   },
   "stock": {
-    "inStock": "In Stock",
-    "lowStock": "Low Stock",
-    "outOfStock": "Out of Stock"
+    "inStock": "En Stock",
+    "lowStock": "Stock Bajo",
+    "outOfStock": "Sin Stock"
   },
   "message": {
-    "requestFailed": "Request failed",
-    "serverError": "Server error",
-    "networkError": "Network error",
-    "addedToCart": "Added to cart"
+    "requestFailed": "Error en la solicitud",
+    "serverError": "Error del servidor",
+    "networkError": "Error de conexión",
+    "addedToCart": "Agregado al carrito"
   },
   "common": {
-    "loading": "Loading...",
-    "confirm": "Confirm",
-    "cancel": "Cancel",
+    "loading": "Cargando...",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
     "yuan": "C$"
   }
 }
